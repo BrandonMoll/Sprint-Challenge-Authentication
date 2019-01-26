@@ -2,7 +2,7 @@ const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database/dbConfig')
-
+require('dotenv').config();
 const { authenticate } = require('../auth/authenticate');
 
 module.exports = server => {
@@ -12,7 +12,7 @@ module.exports = server => {
   server.get('/api/users', getUsers)
 };
 
-const secret = 'secret';
+const secret = process.env.JWT_SECRET
 
 function generateToken(user) {
   const payload = {
