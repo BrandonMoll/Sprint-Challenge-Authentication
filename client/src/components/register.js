@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Register extends Component {
     constructor(props) {
@@ -15,8 +16,19 @@ class Register extends Component {
       };
     
 
-    submitHandler = (username, password) => {
-        
+    submitHandler = (e) => {
+        e.preventDefault();
+        const creds = this.state;
+        const endpoint = 'http://localhost:3300/api/register'
+        axios.post(endpoint, creds)
+        .then(res => {
+            console.log(res)
+            localStorage.setItem('jwt', res.data.token)
+            alert('Successfully Registered!')
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     render() {
