@@ -28,12 +28,14 @@ class Register extends Component {
         })
         .catch(err => {
             console.log(err)
+            alert('Error registering')
         })
     }
 
     render() {
         return (
             <div className='registerContainer'>
+            <h2>Register Page</h2>
                 <form className='form' onSubmit={this.submitHandler}>
                     <input 
                         type='text' 
